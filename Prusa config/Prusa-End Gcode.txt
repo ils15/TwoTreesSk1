@@ -1,0 +1,13 @@
+M104 S0 ; turn off temperature
+M140 S0 ; turn off heatbed
+
+G92 E0.0     ; reset extruder distance position；
+G1 E-1 F2100 ; retract
+
+G28 X  ; home X axis
+G28 Y  ; home X axis
+M84    ; disable motors
+
+M107   ; turn off fan
+
+;SET_VELOCITY_LIMIT ACCEL_TO_DECEL=4000

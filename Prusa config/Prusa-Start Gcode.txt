@@ -1,0 +1,48 @@
+M107 ; Turn off the fan
+G21  ; set units to millimeters
+G90  ; use absolute coordinates
+M83  ; use relative distances for extrusion
+
+M104 S220     ; set extruder temp
+M140 S60  ; set bed temp
+M109 S220      ; wait for extruder temp
+M190 S60  ; wait for bed temp
+G1 E-1 F2100 ; retract
+
+;G32  ;Load bed mesh
+G28   ;home
+G29   ;bed leveling
+
+M104 S[first_layer_temperature]      ; set extruder temp
+M140 S[first_layer_bed_temperature]  ; set bed temp
+M109 S[first_layer_temperature]      ; wait for extruder temp
+M190 S[first_layer_bed_temperature]  ; wait for bed temp
+
+G0 Z2.0 F600;
+G0 X50 Y10 F12000;
+
+G92 E0.0 ; reset extruder distance position；
+G0 Z0.4 F600;
+G1 X100.0 E10 F3000.0 ; intro line
+G92 E0.0 ; reset extruder distance position；
+G1 X200.0 E15 F3000.0 ; intro line
+G92 E0.0 ; reset extruder distance position；
+G0 Z0.8 F600;
+G1 X100.0 E15 F3000.0 ; intro line
+
+G1 Z0.4 F600     ;Wipe
+G0 Y12 F6000    ;Wipe
+G1 X100 F6000    ;Wipe
+G0 Y8 F12000   ;Wipe
+G1 X200 F6000    ;Wipe
+G1 X190 Y12 F6000 ;Wipe
+G1 X180 Y8 F6000 ;Wipe
+G1 X170 Y12 F6000 ;Wipe
+G1 X160 Y8 F6000 ;Wipe
+G1 X150 Y12 F6000 ;Wipe
+
+;G0 Z2.0 F600;
+G92 E0.0 ; reset extruder distance position；
+
+;SET_PRESSURE_ADVANCE ADVANCE=0.05
+;SET_VELOCITY_LIMIT ACCEL_TO_DECEL=10000
